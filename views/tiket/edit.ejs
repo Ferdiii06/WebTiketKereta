@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+<div class="container mt-4">
+  <h2>Edit Tiket</h2>
+  <form action="/tiket/<%= tiket.id %>?_method=PUT" method="POST">
+    <div class="mb-3">
+      <label>Nama</label>
+      <input type="text" name="nama" class="form-control" value="<%= tiket.nama %>" required>
+    </div>
+    <div class="mb-3">
+      <label>NIK</label>
+      <input type="text" name="nik" class="form-control" value="<%= tiket.nik %>" required>
+    </div>
+    <div class="mb-3">
+      <label>Nama Kereta</label>
+      <input type="text" name="kereta" class="form-control" value="<%= tiket.kereta %>" required>
+    </div>
+    <div class="mb-3">
+      <label>Kelas</label>
+      <select name="kelas" class="form-control" required>
+        <option value="Ekonomi" <%= tiket.kelas === 'Ekonomi' ? 'selected' : '' %>>Ekonomi</option>
+        <option value="Bisnis" <%= tiket.kelas === 'Bisnis' ? 'selected' : '' %>>Bisnis</option>
+        <option value="Eksekutif" <%= tiket.kelas === 'Eksekutif' ? 'selected' : '' %>>Eksekutif</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Stasiun Asal</label>
+      <input type="text" name="stasiun_asal" class="form-control" value="<%= tiket.stasiun_asal %>" required>
+    </div>
+    <div class="mb-3">
+      <label>Stasiun Tujuan</label>
+      <input type="text" name="stasiun_tujuan" class="form-control" value="<%= tiket.stasiun_tujuan %>" required>
+    </div>
+    <div class="mb-3">
+      <label>Tanggal Keberangkatan</label>
+     <input type="date" name="tanggal_keberangkatan" class="form-control"
+  value="<%= tiket.tanggal_keberangkatan ? new Date(tiket.tanggal_keberangkatan).toISOString().slice(0,10) : '' %>" required>
+    </div>
+    <div class="mb-3">
+      <label>Jumlah Penumpang</label>
+      <input type="number" name="jumlah_penumpang" class="form-control" value="<%= tiket.jumlah_penumpang %>" min="1" required>
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="/tiket" class="btn btn-secondary">Kembali</a>
+  </form>
+</div>
+<%- include('../partials/footer') %>

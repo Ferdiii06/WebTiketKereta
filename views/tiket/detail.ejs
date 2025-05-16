@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+<div class="container mt-4">
+  <h2>Detail Tiket</h2>
+  <table class="table">
+    <tr><th>Nama</th><td><%= tiket.nama %></td></tr>
+    <tr><th>NIK</th><td><%= tiket.nik %></td></tr>
+    <tr><th>Kereta</th><td><%= tiket.kereta %></td></tr>
+    <tr><th>Kelas</th><td><%= tiket.kelas %></td></tr>
+    <tr><th>Stasiun Asal</th><td><%= tiket.stasiun_asal %></td></tr>
+    <tr><th>Stasiun Tujuan</th><td><%= tiket.stasiun_tujuan %></td></tr>
+    <tr>
+      <th>Tanggal Keberangkatan</th>
+      <td>
+        <% if (tiket.tanggal_keberangkatan) { %>
+          <%= new Date(tiket.tanggal_keberangkatan).toLocaleDateString('id-ID') %>
+        <% } else { %>
+          -
+        <% } %>
+      </td>
+    </tr>
+    <tr><th>Jumlah Penumpang</th><td><%= tiket.jumlah_penumpang %></td></tr>
+    <tr>
+      <th>Harga</th>
+      <td>
+        <% if (tiket.harga) { %>
+          Rp <%= tiket.harga.toLocaleString('id-ID') %>
+        <% } else { %>
+          -
+        <% } %>
+      </td>
+    </tr>
+    <tr><th>Status</th><td><%= tiket.status %></td></tr>
+  </table>
+  <a href="/tiket" class="btn btn-secondary">Kembali</a>
+</div>
+<%- include('../partials/footer') %>

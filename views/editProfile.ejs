@@ -1,0 +1,30 @@
+<%- include('./partials/header') %>
+<div class="container mt-5" style="max-width: 500px;">
+  <h3>Edit Profil</h3>
+  <% if (success_msg) { %>
+    <div class="alert alert-success"><%= success_msg %></div>
+  <% } %>
+  <% if (error_msg) { %>
+    <div class="alert alert-danger"><%= error_msg %></div>
+  <% } %>
+  <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Nama</label>
+      <input type="text" name="name" class="form-control" value="<%= user.name %>" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" value="<%= user.email %>" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Foto Profil</label><br>
+      <% if (user.profileImage) { %>
+        <img src="/uploads/<%= user.profileImage %>" width="80" class="rounded mb-2">
+      <% } %>
+      <input type="file" name="profileImage" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="/profile" class="btn btn-secondary">Batal</a>
+  </form>
+</div>
+<%- include('./partials/footer') %>

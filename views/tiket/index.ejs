@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Daftar Tiket Saya</h2>
+    <a href="/" class="btn btn-primary">Beranda</a>
+  </div>
+  <% if (tikets && tikets.length > 0) { %>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Kereta</th>
+          <th>Kelas</th>
+          <th>Stasiun Asal</th>
+          <th>Stasiun Tujuan</th>
+          <th>Tanggal</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tikets.forEach(tiket => { %>
+          <tr>
+            <td><%= tiket.nama %></td>
+            <td><%= tiket.kereta %></td>
+            <td><%= tiket.kelas %></td>
+            <td><%= tiket.stasiun_asal %></td>
+            <td><%= tiket.stasiun_tujuan %></td>
+            <td><%= tiket.tanggal_keberangkatan ? new Date(tiket.tanggal_keberangkatan).toLocaleDateString() : '-' %></td>
+            <td><span class="badge bg-<%= tiket.status === 'Dibayar' ? 'success' : tiket.status === 'Dibatalkan' ? 'danger' : 'warning' %>"><%= tiket.status %></span></td>
+            <td>
+              <a href="/tiket/<%= tiket.id %>" class="btn btn-info btn-sm">Detail</a>
+              <a href="/tiket/edit/<%= tiket.id %>" class="btn btn-warning btn-sm">Edit</a>
+                <% if (tiket.status === 'Belum Dibayar') { %>
+               <a href="/tiket/bayar/<%= tiket.id %>" class="btn btn-warning btn-sm">Bayar</a>
+                <% } %>
+              <form action="/tiket/cancel/<%= tiket.id %>" method="POST" class="d-inline">
+              <form action="/tiket/delete/<%= tiket.id %>" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus tiket ini?')">Hapus</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="alert alert-info">Belum ada tiket. <a href="/tiket/add">Pesan tiket sekarang</a>.</div>
+  <% } %>
+</div>
+<%- include('../partials/footer') %>

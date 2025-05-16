@@ -1,0 +1,151 @@
+<%- include('./partials/header') %>
+<div class="container py-4">
+  <!-- Banner Selamat Datang -->
+  <div class="p-4 mb-4 rounded shadow bg-primary text-white text-center">
+    <h2 class="fw-bold mb-2">Selamat Datang, <%= user.name %>!</h2>
+    <p class="mb-0">Pesan tiket kereta api dengan mudah, cepat, dan aman.</p>
+  </div>
+
+  <!-- Promo / Info -->
+  <div class="row mb-4">
+    <div class="col-md-8 mb-3 mb-md-0">
+      <div class="alert alert-success shadow-sm">
+        <i class="bi bi-stars"></i> <strong>Promo Mei:</strong> Diskon 10% untuk pembelian tiket pulang-pergi!
+        <a href="/promo" class="btn btn-sm btn-outline-primary float-end">Lihat Promo</a>
+      </div>
+      <div class="alert alert-info shadow-sm">
+        <i class="bi bi-info-circle"></i> <strong>Informasi:</strong> Tiket hanya dapat dibatalkan maksimal 24 jam sebelum keberangkatan.
+        <a href="/info" class="btn btn-sm btn-outline-primary float-end">Lihat Info</a>
+      </div>
+      
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center">
+        <div class="card-body">
+          <i class="bi bi-person-circle text-primary" style="font-size:2rem"></i>
+          <div class="fw-bold mt-2"><%= user.name %></div>
+          <div class="text-muted" style="font-size:0.9rem"><%= user.email %></div>
+          <a href="/profile" class="btn btn-outline-primary btn-sm mt-2">Lihat Profil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tombol Aksi Cepat -->
+  <div class="row mb-4 g-3">
+    <div class="col-12 col-md-4">
+      <a href="/tiket/add" class="btn btn-lg btn-success w-100 shadow">
+        <i class="bi bi-ticket-perforated"></i> Pesan Tiket
+      </a>
+    </div>
+    <div class="col-12 col-md-4">
+      <a href="/tiket" class="btn btn-lg btn-info w-100 shadow">
+        <i class="bi bi-clock-history"></i> Riwayat Tiket
+      </a>
+    </div>
+    <div class="col-12 col-md-4">
+      <a href="/profile" class="btn btn-lg btn-secondary w-100 shadow">
+        <i class="bi bi-person"></i> Profil Saya
+      </a>
+    </div>
+  </div>
+
+  <!-- Statistik Singkat (dummy, bisa diisi dari backend) -->
+  <div class="row mb-4 g-3">
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fw-bold" style="font-size:2rem;color:#2563eb">3</div>
+          <div class="text-muted">Tiket Aktif</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fw-bold" style="font-size:2rem;color:#059669">1</div>
+          <div class="text-muted">Tiket Selesai</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fw-bold" style="font-size:2rem;color:#f59e42">0</div>
+          <div class="text-muted">Tiket Dibatalkan</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fw-bold" style="font-size:2rem;color:#e11d48">Rp 500.000</div>
+          <div class="text-muted">Total Belanja</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jadwal Kereta Hari Ini -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white fw-bold">
+      <i class="bi bi-calendar-event"></i> Jadwal Kereta Hari Ini
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped mb-0">
+          <thead>
+            <tr>
+              <th>Nama Kereta</th>
+              <th>Stasiun Asal</th>
+              <th>Stasiun Tujuan</th>
+              <th>Berangkat</th>
+              <th>Tiba</th>
+              <th>Kelas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Argo Bromo Anggrek</td>
+              <td>Surabaya Pasar Turi</td>
+              <td>Gambir</td>
+              <td>08:00</td>
+              <td>15:00</td>
+              <td>Eksekutif</td>
+            </tr>
+            <tr>
+              <td>Gaya Baru Malam</td>
+              <td>Surabaya Gubeng</td>
+              <td>Pasar Senen</td>
+              <td>12:00</td>
+              <td>22:00</td>
+              <td>Ekonomi</td>
+            </tr>
+            <tr>
+              <td>Mutiara Selatan</td>
+              <td>Bandung</td>
+              <td>Surabaya Gubeng</td>
+              <td>09:30</td>
+              <td>19:00</td>
+              <td>Bisnis</td>
+            </tr>
+            <tr>
+              <td>Jayabaya</td>
+              <td>Malang</td>
+              <td>Pasar Senen</td>
+              <td>14:00</td>
+              <td>23:00</td>
+              <td>Ekonomi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="text-center text-muted mt-4 mb-2">
+    <small>© <%= new Date().getFullYear() %> Pemesanan Tiket Kereta by Ferdi</small>
+  </div>
+</div>
+<%- include('./partials/footer') %>

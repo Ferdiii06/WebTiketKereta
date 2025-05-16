@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+<div class="container mt-4 mb-5">
+  <div class="card p-4 shadow" style="max-width: 700px; margin:auto;">
+    <h3 class="mb-4 fw-bold text-primary">Pesan Tiket Kereta</h3>
+    <form action="/tiket" method="POST">
+      <div class="mb-3">
+        <label for="nama" class="form-label">Nama</label>
+        <input type="text" class="form-control" id="nama" name="nama" required>
+      </div>
+      <div class="mb-3">
+        <label for="nik" class="form-label">NIK</label>
+        <input type="text" class="form-control" id="nik" name="nik" required>
+      </div>
+      <div class="mb-3">
+        <label for="kereta" class="form-label">Nama Kereta</label>
+        <select class="form-select" id="kereta" name="kereta" required>
+          <option value="">Pilih Kereta</option>
+          <option value="Argo Bromo Anggrek">Argo Bromo Anggrek</option>
+          <option value="Gaya Baru Malam">Gaya Baru Malam</option>
+          <option value="Mutiara Selatan">Mutiara Selatan</option>
+          <option value="Jayabaya">Jayabaya</option>
+          <option value="Majapahit">Majapahit</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="kelas" class="form-label">Kelas</label>
+        <select class="form-select" id="kelas" name="kelas" required>
+          <option value="">Pilih Kelas</option>
+          <option value="Eksekutif">Eksekutif</option>
+          <option value="Bisnis">Bisnis</option>
+          <option value="Ekonomi">Ekonomi</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="stasiun_asal" class="form-label">Stasiun Asal</label>
+        <input type="text" class="form-control" id="stasiun_asal" name="stasiun_asal" required>
+      </div>
+      <div class="mb-3">
+        <label for="stasiun_tujuan" class="form-label">Stasiun Tujuan</label>
+        <input type="text" class="form-control" id="stasiun_tujuan" name="stasiun_tujuan" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Tipe Perjalanan</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="tipe_perjalanan" id="sekali_jalan" value="Sekali Jalan" checked onchange="toggleTanggalPulang()">
+          <label class="form-check-label" for="sekali_jalan">Sekali Jalan</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="tipe_perjalanan" id="pulang_pergi" value="Pulang Pergi" onchange="toggleTanggalPulang()">
+          <label class="form-check-label" for="pulang_pergi">Pulang Pergi</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="tanggal_keberangkatan" class="form-label">Tanggal Keberangkatan</label>
+        <input type="date" class="form-control" id="tanggal_keberangkatan" name="tanggal_keberangkatan" required>
+      </div>
+      <div class="mb-3" id="tanggal_pulang_group" style="display:none;">
+        <label for="tanggal_pulang" class="form-label">Tanggal Pulang</label>
+        <input type="date" class="form-control" id="tanggal_pulang" name="tanggal_pulang">
+      </div>
+      <div class="mb-3">
+        <label for="jumlah_penumpang" class="form-label">Jumlah Penumpang</label>
+        <select class="form-select" id="jumlah_penumpang" name="jumlah_penumpang" required>
+          <option value="">Pilih Jumlah</option>
+          <% for(let i=1; i<=6; i++) { %>
+            <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success">Pesan</button>
+      <a href="/" class="btn btn-secondary">Kembali</a>
+    </form>
+  </div>
+</div>
+<script>
+function toggleTanggalPulang() {
+  const pulangPergi = document.getElementById('pulang_pergi').checked;
+  document.getElementById('tanggal_pulang_group').style.display = pulangPergi ? 'block' : 'none';
+}
+</script>
+<%- include('../partials/footer') %>
