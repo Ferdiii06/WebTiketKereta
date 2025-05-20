@@ -1,0 +1,24 @@
+<%- include('./partials/header') %>
+<div class="container mt-5">
+  <h2 class="mb-4">Informasi & Pengumuman</h2>
+  <a href="/" class="btn btn-primary mb-3">Beranda</a>
+  <% if (infos.length === 0) { %>
+    <div class="alert alert-info">Belum ada informasi saat ini.</div>
+  <% } %>
+  <div class="row">
+    <% infos.forEach(info => { %>
+      <div class="col-md-8 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="card-title"><%= info.title %></h4>
+            <p class="card-text"><%= info.content %></p>
+            <div class="text-muted" style="font-size:0.9rem">
+              Berlaku sampai: <%= info.valid_until ? new Date(info.valid_until).toLocaleDateString('id-ID') : '-' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+<%- include('./partials/footer') %>

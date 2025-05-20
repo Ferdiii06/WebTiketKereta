@@ -11,6 +11,9 @@ const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 require('./config/passport')(passport);
 
+
+
+
 const app = express();
 
 // Middleware
@@ -45,6 +48,12 @@ app.use('/', authRoutes);
 app.use('/tiket', tiketRoutes);
 app.use('/', profileRoutes);
 
+const infoRoutes = require('./routes/infoRoutes');
+app.use('/', infoRoutes);
+
+const promoRoutes = require('./routes/promoRoutes');
+app.use('/', promoRoutes);
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).render('404');
@@ -58,5 +67,7 @@ sequelize.sync().then(() => {
 }).catch(err => {
   console.error('Unable to connect to the database:', err);
 });
+
+
 
 module.exports = app;

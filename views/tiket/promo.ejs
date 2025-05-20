@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<div class="container mt-5">
+  <h2 class="mb-4">Promo Tiket Kereta</h2>
+  <a href="/" class="btn btn-primary mb-3">Beranda</a>
+  <% if (promos.length === 0) { %>
+    <div class="alert alert-info">Belum ada promo saat ini.</div>
+  <% } %>
+  <div class="row">
+    <% promos.forEach(promo => { %>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="card-title"><%= promo.title %></h4>
+            <p class="card-text"><%= promo.description %></p>
+            <ul class="list-group list-group-flush mb-3">
+              <li class="list-group-item">
+                <strong>Kode Promo:</strong> <span class="badge bg-success"><%= promo.kode %></span>
+              </li>
+              <li class="list-group-item">
+                <strong>Diskon:</strong> <%= promo.discount_percent %>%
+              </li>
+              <li class="list-group-item">
+                <strong>Berlaku Sampai:</strong>
+                <%= promo.valid_until ? new Date(promo.valid_until).toLocaleDateString('id-ID') : '-' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+<%- include('../partials/footer') %>
